@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Referencia: 1
+  Titulo: MyString
+  Localidad: MyString
+  Provincia: MyString
+  Precio: 1.5
+  Superficie: MyString
+  Habitaciones: 1
+  Garage: false
+  Terraza: false
+  Trastero: false
+  Piscina: false
+  Ascensor: false
+  Jardin: false
+  Certificacion: false
+  Imagen: MyString
+  Novedad: false
+  user: one
+
+two:
+  Referencia: 1
+  Titulo: MyString
+  Localidad: MyString
+  Provincia: MyString
+  Precio: 1.5
+  Superficie: MyString
+  Habitaciones: 1
+  Garage: false
+  Terraza: false
+  Trastero: false
+  Piscina: false
+  Ascensor: false
+  Jardin: false
+  Certificacion: false
+  Imagen: MyString
+  Novedad: false
+  user: two

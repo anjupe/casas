@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--
+	<script>
+	
+	$.getJSON('http://localhost:3000/api/v1/posts.json', function(datos){
+        $.each(datos, function(clave, valor){
+            codigo='<div><h5>'+valor.title+'</h5><p>'+valor.body+'</p></div>';
+
+            $("#lista_post").append(codigo);
+        });
+    });
+	
+	
+    //var direccion=String(new URL(document.URL).searchParams.get("ref"));
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var datos = JSON.parse(this.responseText);
+            document.getElementById("lista_post").innerHTML = datos[0].title
+			document.getElementById("titulo").value = datos[5].title
+			document.getElementById("localidad").value = datos[2].title
+        }
+    };
+    xmlhttp.open("GET", "http://localhost:3000/api/v1/posts.json", true);
+    xmlhttp.send();
+	
+   
+		
+	
+	</script> -->
+	
+</head>
+<body>
+	<div>
+		<input type="text" id="titulo" value="Cargando..."/>
+		<input type="text" id="localidad" value="Cargando..."/>	
+	</div>
+	<div id="lista_post">			
+	</div>
+	<script>
+	$(document).ready(lista_json());
+	
+	function lista_json(){
+    var codigo = '';
+	
+    $.getJSON('http://localhost:3000/api/v1/viviendas.json', function(datos){
+
+        var divi = $('#lista_casas');
+        $.each(datos, function(clave, valor){
+            codigo='<div class="shadow p-3 mb-5 bg-white rounded item_casa"><h5>'+valor.Titulo+'</h5><section class="row"><a href="house.html?ref='+valor.Referencia+
+                '" class="col-lg-4 col-md-4 col-xs-12"><img src="'+valor.Imagen+'" class="col-12"></a><div class="detalles_casa"><p class="precio_result">Precio: <b class="price">'
+                + valor.Precio+'</b></p><p class="direccion_result">Localidad: '+valor.Localidad
+                +'<br>Superficie: '+valor.Superficie+'m<sup>2</sup><br>Habitaciones: '+valor.Habitaciones+'</p></div></section></div>';
+
+            $("#lista_post").append(codigo);
+        });
+    });
+}	
+
+
+	</script>
+</body>
+</head>

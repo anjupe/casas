@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--
+	<script>
+	
+	$.getJSON('http://localhost:3000/api/v1/posts.json', function(datos){
+        $.each(datos, function(clave, valor){
+            codigo='<div><h5>'+valor.title+'</h5><p>'+valor.body+'</p></div>';
+
+            $("#lista_post").append(codigo);
+        });
+    });
+	
+	
+    //var direccion=String(new URL(document.URL).searchParams.get("ref"));
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var datos = JSON.parse(this.responseText);
+            document.getElementById("lista_post").innerHTML = datos[0].title
+			document.getElementById("titulo").value = datos[5].title
+			document.getElementById("localidad").value = datos[2].title
+        }
+    };
+    xmlhttp.open("GET", "http://localhost:3000/api/v1/posts.json", true);
+    xmlhttp.send();
+	
+   
+		
+	
+	</script> -->
+	
+</head>
+<body>
+	<div>
+		<input type="text" id="titulo" value="Cargando..."/>
+		<input type="text" id="localidad" value="Cargando..."/>
+		<button type="button" onclick="send()">Dale</button>
+		<button type="button" onclick="berra()">Borra</button>
+	</div>
+	<div id="lista_post">			
+	</div>
+	<div id="json_list">			
+	</div>
+	
+	<script>	
+	function send(){
+	var destino = "http://localhost:3000/api/v1/users"
+    var usuario = {name: $('#titulo').val()}
+	var myj = JSON.stringify(usuario);
+	$('#json_list').html(myj);
+	$.ajax({
+	url: destino,
+	type: 'post',
+	dataType: 'json',
+	contentType: 'application/json',
+	success: function (data){
+			$('#lista_post').html(data.msg);
+		},
+	data: JSON.stringify(usuario)
+	});
+	}
+	
+	function berra(){
+	var number = $('#localidad').val()
+	var destino = "http://localhost:3000/api/v1/users/"+number;
+	$.ajax({
+	url: destino,
+	type: 'DELETE',
+	success: function (result){
+			$('#lista_post').html(result);
+		},
+	});
+	}
+
+
+	</script>
+</body>
+</head>

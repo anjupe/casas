@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta>
+<!--
+<link rel="stylesheet" href="/estilo/bootstrap.css">
+-->
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="scripts/funciones.js"></script>
+
+<link rel="stylesheet" href="css\css.css">
+
+<title> ALQUILER Y VENTA VIVIENDAS - DW1 </title>
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="images/logo.png" class="img-logo" href="#">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto" style="width:25%;">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Easy House <span class="sr-only">(current)</span></a>
+                </li>
+
+
+            </ul>
+            <a class="nav-link" style="width:50%; color:red; border-solid:2px;" href="home.html">📌 ¡Publica tu anuncio Gratis!</a>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="button" onclick="location.href='home.html'">Logout</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<section class= "row" id="resultados_busqueda">
+
+    <section id="contenedor_result" class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+        <h3 id="titulo_busqueda"></h3>
+        <div id="lista_casas">
+            <div class="shadow p-3 mb-5 bg-white rounded item_casa">
+                <h5>  valor.Titulo  </h5>
+                <section class="row">
+                    <a href="house.html?ref=1" class="col-lg-4 col-md-4 col-xs-12"><img src="images/1.jpg" class="col-12"></a>
+                    <div class="col-lg-5 col-md-5 col-xs-12 detalles_casa">
+                        <p class="precio_result">Precio: <b class="price">531€</b></p>
+                        <p class="direccion_result">Localidad: Las Palmas de Tanzania
+                            <br>Superficie: 45 m<sup>2</sup>
+                            <br>Habitaciones: 8</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12">
+                        <button class="ml-auto" type="button" onclick="">Eliminar</button>
+                        <button class="ml-auto" type="button" onclick="">Actualizar</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </section>
+
+    <aside id="aside_user" class="col-lg-4 widget">
+        <div>
+            <h3>Publica un nuevo anuncio</h3>
+            <img src="images/alquila.jpg" class="col-12">
+            <p class="anuncio">Añade ahora una nueva propiedad desde el siguiente <a href="">enlace</a>.</p>
+            <br><br>
+        </div>
+        <div>
+            <h3>Obtén Descuentos</h3>
+            <p class="anuncio">Por ser miembro de esta comunidad, puedes obtener grandes descuentos si alquilas alguna propiedad.<br> Consulta más detalles en el siguiente <a href="">enlace</a>.</p>
+        </div>
+    </aside>
+
+</section>
+
+
+
+<footer class="row footer">
+    <div class="col-sm-3">
+        <h3 class="footer-tittle"> Contacto </h3>
+        <p>C/ Tafira nº 39 Las Palmas</p>
+        <p>Telefono: 999999999</p>
+        <a href="mailto:una@dominio.com">una@dominio.com</a>
+    </div>
+    <div class="col-sm-6">
+        <img src="images/mapa.JPG" class="img-thumbnail" alt="mapa_las_palmas">
+    </div>
+    <div class="col-sm-3">
+        <h3 class="footer-tittle"> Redes Sociales </h3>
+        <img src="images/facebook.png"  class="img-icon" alt="facebook">
+        <img src="images/twiter.png" class="img-icon" alt="twiter">
+        <img src="images/instagram.png" class="img-icon" alt="instagram">
+    </div>
+</footer>
+
+<script>
+    $(document).ready(relleno_pag_usuario());
+</script>
+
+</body>
+</html>

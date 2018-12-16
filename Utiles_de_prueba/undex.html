@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--
+	<script>
+	
+	$.getJSON('http://localhost:3000/api/v1/posts.json', function(datos){
+        $.each(datos, function(clave, valor){
+            codigo='<div><h5>'+valor.title+'</h5><p>'+valor.body+'</p></div>';
+
+            $("#lista_post").append(codigo);
+        });
+    });
+	
+	
+    //var direccion=String(new URL(document.URL).searchParams.get("ref"));
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var datos = JSON.parse(this.responseText);
+            document.getElementById("lista_post").innerHTML = datos[0].title
+			document.getElementById("titulo").value = datos[5].title
+			document.getElementById("localidad").value = datos[2].title
+        }
+    };
+    xmlhttp.open("GET", "http://localhost:3000/api/v1/posts.json", true);
+    xmlhttp.send();
+	
+	</script> -->
+	
+</head>
+<body>
+	<h3>Utilidades para usuarios</h3>
+	<div>
+		<label>ID:</label>
+		<input type="text" id="identificador" placeholder="PONLO O no FUNCIONA"/><br>
+		<label>Nombre:</label>
+		<input type="text" id="nombre" value="Gerónimo"/><br>
+		<label>Teléfono:</label>
+		<input type="text" id="tlf" value="641903299"/><br>
+		<label>Email:</label>
+		<input type="text" id="email" value="gerome@dominio.com"/><br>
+		<button type="button" onclick="send()">Crea usuario</button>
+		<button type="button" onclick="berra()">Borra(con ID)</button>
+	</div>
+	<div id="lista_post">			
+	</div>
+	<div id="json_list">			
+	</div><br>
+	<h3>Utilidades para vivienda</h3>
+		<label>ID_user:</label>
+		<input type="text" id="id_user" value="16"/><br>
+		<label>ID:</label>
+		<input type="text" id="iden" placeholder="PONLO O no FUNCIONA"/><br>
+		<label>Referencia:</label>
+		<input type="text" id="referencia" value="0020"/><br>
+		<label>Titulo:</label>
+		<input type="text" id="titulo" value="Casa nueva verde"/><br>
+		<label>Localidad:</label>
+		<input type="text" id="localidad" value="Puntagorda"/><br>
+		<label>Provincia:</label>
+		<input type="text" id="provincia" value="Santa Cruz de Tenerife"/><br>
+		<label>Precio:</label>
+		<input type="text" id="precio" value="729"/><br>
+		<label>Superficie:</label>
+		<input type="text" id="superficie" value="100"/><br>
+		<label>Habitaciones:</label>
+		<input type="text" id="habitaciones" value="3"/><br>
+		<label>Garage:</label>
+		<input type="checkbox" id="garage" name="garage" checked>
+		<label>Terraza:</label>
+		<input type="checkbox" id="terraza" name="terraza"><br>
+		<label>Trastero:</label>
+		<input type="checkbox" id="trastero" name="trastero">
+		<label>Piscina:</label>
+		<input type="checkbox" id="piscina" name="piscina" checked><br>
+		<label>Ascensor:</label>
+		<input type="checkbox" id="ascensor" name="ascensor">
+		<label>Jardin:</label>
+		<input type="checkbox" id="jardin" name="jardin"><br>
+		<label>Certificacion Energética:</label>
+		<input type="checkbox" id="certificacion" name="certificacion" checked><br>
+		<label>Imagen:</label>
+		<input type="text" id="imagen" value="9"/><br>
+		<label>Novedad:</label>
+		<input type="checkbox" id="novedad" name="novedad" checked><br>
+		<button type="button" onclick="send_casa()">Crear casa</button>
+		<button type="button" onclick="borra_casa()">Borra casa</button>
+		<button type="button" onclick="actualiza_casa()">Actualiza casa</button>
+	</div>
+	</div>
+	<div id="json_lista">			
+	</div>
+	<div id="Puta">			
+	</div>
+	
+	<script>	
+	function send(){
+	var destino = "http://localhost:3000/api/v1/users";
+    var usuario = {Nombre: $('#nombre').val(),
+			Telefono: $('#tlf').val(),
+			Email: $('#email').val()};
+	var myj = JSON.stringify(usuario);
+	$('#json_list').html(myj);
+	$.ajax({
+	url: destino,
+	type: 'post',
+	dataType: 'json',
+	contentType: 'application/json',
+	success: function (data){
+			$('#lista_post').html(data.msg);
+		},
+	data: JSON.stringify(usuario)
+	});
+	}
+	
+	function berra(){
+	var number = $('#identificador').val();
+	var destino = "http://localhost:3000/api/v1/users/"+number;
+	$.ajax({
+	url: destino,
+	type: 'DELETE',
+	success: function (result){
+			$('#lista_post').html(result);
+		},
+	});
+	}
+	
+	function send_casa(){
+	var destino = "http://localhost:3000/api/v1/viviendas";
+    var datos = crear_json();
+	var myj = JSON.stringify(datos);
+	$('#json_lista').html(myj);
+	$.ajax({
+	url: destino,
+	type: 'post',
+	dataType: 'json',
+	contentType: 'application/json',
+	success: function (result){
+			$('#lista_post').html(result);
+		},
+	data: JSON.stringify(datos)
+	});
+	}
+	
+	function actualiza_casa(){
+	var destino = "http://localhost:3000/api/v1/viviendas/" + $('#iden').val();
+    var datos = crear_json();
+	var myj = JSON.stringify(datos);
+	$('#json_lista').html(myj);
+	$('#Puta').html(destino);
+	$.ajax({
+	url: destino,
+	type: 'put',
+	dataType: 'json',
+	contentType: 'application/json',
+	success: function (result){
+			$('#lista_post').html(result);
+		},
+	data: JSON.stringify(datos)
+	});
+	
+	}
+	
+	function borra_casa(){
+	var destino = "http://localhost:3000/api/v1/viviendas/"+$('#iden').val();
+	$.ajax({
+	url: destino,
+	type: 'DELETE',
+	success: function (result){
+			$('#lista_post').html(result);
+		},
+	});
+	}
+	
+	function crear_json(){
+		var datos = {id_user: $('#id_user').val(),
+		Referencia:$('#referencia').val(),
+		Titulo:$('#titulo').val(),
+		Localidad: $('#localidad').val(),
+		Provincia: $('#provincia').val(),
+		Precio: $('#precio').val(),
+		Superficie: $('#superficie').val(),
+		Habitaciones:$('#habitaciones').val(),
+		Garage:$('#garage').prop('checked'),
+		Terraza:$('#terraza').prop('checked'),
+		Trastero:$('#trastero').prop('checked'),
+		Piscina:$('#piscina').prop('checked'),
+		Ascensor:$('#ascensor').prop('checked'),
+		Jardin:$('#jardin').prop('checked'),
+		Certificacion:$('#certificacion').prop('checked'),
+		Imagen:"images/"+$('#imagen').val()+".jpg",
+		Novedad:$('#novedad').prop('checked')};
+		return datos;
+	}
+
+
+	</script>
+</body>
+</head>
